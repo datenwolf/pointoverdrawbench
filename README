@@ -1,0 +1,47 @@
+=== a simple benchmark to evaluate drawing time of points with high overdraw ===
+
+Upon writing a benchmark to evaluate the cost of using various data types
+for vertex attributes I notices a strange behaviour in drawing huge amounts
+of blended point with lots of overdraw: The naive expectation would be, that
+when drawing a constant amount of point the more fragments are touched, the
+higher to overall draw time.
+
+As it turns out for at least a NVidia GeForce GTX980 things are not that simple.
+The drawing times actually reduce with increasing viewport size... or rather
+increasing vertical size; the horizontal size doesn't seem to have that much
+of an effect.
+
+To gather data from more GPUs I provide this source code repository and ask
+people to run the program with their GPUs and submit the results for evaluation.
+
+**IMPORTANT NOTICE:**
+_The program depends on OpenGL-4.3, namely compute shaders. However since this
+is more or less a quick hack I didn't add any version or feature checking. So
+if trying to run this program on a system that lacks OpenGL-4.3 the results
+are undefined and may range from a black window with nonsensical numbers to
+immediate program crashes!_
+
+== Build Dependencies ==
+- OpenGL headers and linker stubs
+  - Windows: compiler toolchains should have them without extra effort
+  - X11/GLX (Linux / *BSD / Solaris): if OpenGL drivers are installed, they
+      should be available. Otherwise install the Mesa development support
+      package.
+
+- GLUT (kind of smells, but everybody dabbling with GPUs has it around)
+- GLEW (kind of sucks, but everybody dabbling with GPUs has it around)
+
+== Build Instructions ==
+- Using *make*: just run `make`
+- Using *CMake*: `mkdir $BUILDDIR ; cd $BUILDDIR ; cmake $SOURCEDIR ; make`
+
+== Run Instructions ==
+Run the program and direct its stdout into a file, .e.g.
+
+    ./pointoverdrawbench > statistics.log
+
+OpenGL debug messages are emitted to stderr. If you see something noteworthy
+there, add this to your report.
+
+== How to report results ==
+Submit them as a Github Issue
