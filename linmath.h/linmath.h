@@ -1,6 +1,18 @@
 #ifndef LINMATH_H
 #define LINMATH_H
 
+#if __STDC_VERSION__ < 199901L
+# ifndef inline
+#  if defined(_MSC_VER)
+#   define inline __inline
+#  elif defined(__GNUC__)
+#   define inline __inline__
+#  else
+#   define inline
+#  endif
+# endif
+#endif
+
 #include <math.h>
 #include <string.h>
 

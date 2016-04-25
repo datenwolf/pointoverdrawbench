@@ -163,11 +163,30 @@ void display(void)
 	mat4x4_identity(proj);
 
 	float const fov = 0.5;
-	mat4x4_frustum(proj,
-		-window.aspect*fov,
-		 window.aspect*fov,
-		-fov,
-		 fov, 1, 5);
+#if 0
+	if( 1. <= window.aspect ) {
+		mat4x4_frustum(proj,
+			-fov*window.aspect,
+			 fov*window.aspect,
+			-fov,
+			 fov,
+			 1, 5);
+	} else {
+		mat4x4_frustum(proj,
+			-fov,
+			 fov,
+			-fov/window.aspect,
+			 fov/window.aspect,
+			 1, 5);
+	}
+#else
+		mat4x4_frustum(proj,
+			-fov,
+			 fov,
+			-fov,
+			 fov,
+			 1, 5);
+#endif
 
 	mat4x4 mv;
 	mat4x4_identity(mv);

@@ -202,7 +202,7 @@ GLuint shader_load_from_files(
 				shader_infolog );
 			fprintf(stderr, "shader compilation failed; sources:\n");
 			for(i = 0; i < filecount; i++) {
-				fprintf(stderr, " %.2d: %s\n", i, filepaths[i]);
+				fprintf(stderr, " %.2u: %s\n", (unsigned)i, filepaths[i]);
 			}
 			fputs("compile log:\n", stderr);
 			fwrite(shader_infolog, returned_length, 1, stderr);
