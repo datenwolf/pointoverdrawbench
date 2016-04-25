@@ -31,6 +31,11 @@ immediate program crashes!_
 - GLUT (kind of smells, but everybody dabbling with GPUs has it around)
 - GLEW (kind of sucks, but everybody dabbling with GPUs has it around)
 
+Parts of this program make use of C99 features (inline, NAN (defined in math.h))
+so it must be built with a compiler that has sufficient support for C99. This
+mostly affects the Microsoft Visual C++ toolchain, where the minimum requirement
+is Visual C++ 2013.
+
 == Build Instructions ==
 - Using *make*: just run `make`
 - Using *CMake*: `mkdir $BUILDDIR ; cd $BUILDDIR ; cmake $SOURCEDIR ; make`
