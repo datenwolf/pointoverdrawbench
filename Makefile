@@ -3,7 +3,7 @@ OBJS = \
        main.o positiongen.o solid.o stats.o \
        shaderloader/shaderloader.o \
        debuggl/debuggl.o
-CFLAGS = -std=c99 -I../../../extra
+CFLAGS = -std=c99
 LDLIBS = -lGL -lGLEW -lglut -lm
 
 .PHONY: all clean
